@@ -1,6 +1,6 @@
 # IconIx
 
-FontAwesome - Icon picker library.
+FontAwesome - Icon picker plugin.
 
 ---
 
