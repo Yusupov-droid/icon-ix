@@ -1,0 +1,223 @@
+@import url(https://fonts.googleapis.com/css2?family=Rubik&display=swap);
+:root {
+  --pc-icon-size: 40px;
+  --pc-icon-font-size: 25px;
+  --pc-icon-margin: 5px;
+  --pc-icon-padding: 5px;
+  --pc-first-color: #5a00aa;
+  --pc-third-color: #616161;
+  --pc-second-color: #d2d2d2;
+  --pc-fourth-color: #ffffff;
+}
+
+.picker *,
+.picker *::after,
+.picker *::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.picker__wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: transparent;
+  -webkit-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease;
+}
+.picker__wrapper .picker {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  font-family: "Rubik", sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.199);
+          box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.199);
+  -webkit-transition: -webkit-transform 0.25s;
+  transition: -webkit-transform 0.25s;
+  transition: transform 0.25s;
+  transition: transform 0.25s, -webkit-transform 0.25s;
+}
+.picker__wrapper .picker__header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: var(--pc-third-color);
+}
+.picker__wrapper .picker__header > span {
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.picker__wrapper .picker__header > span:hover {
+  -webkit-transform: rotateZ(360deg);
+          transform: rotateZ(360deg);
+}
+.picker__wrapper .picker__header > span > i {
+  pointer-events: none;
+}
+.picker__wrapper .picker__content-search {
+  margin-bottom: 5px;
+}
+.picker__wrapper .picker__content-search > input {
+  font-size: 17px;
+  font-weight: 500;
+  font-family: inherit;
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0px;
+  border-radius: 5px;
+  border: 3px solid var(--pc-second-color);
+  outline: none;
+}
+.picker__wrapper .picker__content-icons {
+  padding: 5px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  background: var(--pc-second-color);
+}
+.picker__wrapper .picker__content-icons main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 310px;
+  min-height: 200px;
+  max-height: 250px;
+  overflow-y: scroll;
+  -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+          align-content: flex-start;
+}
+.picker__wrapper .picker__content-icons main::-webkit-scrollbar {
+  width: 2px;
+}
+.picker__wrapper .picker__content-icons main::-webkit-scrollbar-button {
+  display: none;
+}
+.picker__wrapper .picker__content-icons main::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: var(--pc-first-color);
+}
+.picker__wrapper .picker__content-icons main::-webkit-scrollbar-thumb:hover {
+  background: var(--pc-first-color);
+}
+.picker__wrapper .picker__content-icons main a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--pc-first-color);
+  width: var(--pc-icon-size);
+  height: var(--pc-icon-size);
+  margin: var(--pc-icon-margin);
+  padding: var(--pc-icon-padding);
+  font-size: var(--pc-icon-font-size);
+  background-color: var(--pc-fourth-color);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.199);
+          box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.199);
+}
+.picker__wrapper .picker__content-icons main a:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.picker__wrapper .picker__content-icons main a i {
+  pointer-events: none;
+}
+.picker__wrapper .picker__content-paginator {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.picker__wrapper .picker__content-paginator > input {
+  cursor: pointer;
+  margin: 0 10px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  background: transparent;
+  color: var(--pc-third-color);
+  border: 2px solid var(--pc-second-color);
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+.picker__wrapper .picker__content-paginator > span {
+  text-align: center;
+  min-width: 50px;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--pc-third-color);
+}
+.picker__wrapper.open {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: background-color 0.25s;
+  transition: background-color 0.25s;
+}
+.picker__wrapper.open > .picker {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}

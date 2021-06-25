@@ -1,0 +1,198 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+:root {
+  --pc-icon-size: 40px;
+  --pc-icon-font-size: 25px;
+
+  --pc-icon-margin: 5px;
+  --pc-icon-padding: 5px;
+
+  --pc-first-color: #5a00aa;
+  --pc-third-color: #616161;
+  --pc-second-color: #d2d2d2;
+  --pc-fourth-color: #ffffff;
+}
+
+
+.picker *,
+.picker *::after,
+.picker *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.picker__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+  background-color: transparent;
+  transition: background-color 0.25s ease;
+
+  & .picker {
+    transform: scale(0);
+    font-family: "Rubik", sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.199);
+
+    transition: transform 0.25s;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+
+      font-size: 20px;
+      color: var(--pc-third-color);
+
+      &>span {
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s;
+
+        &:hover {
+          transform: rotateZ(360deg);
+        }
+
+        &>i {
+          pointer-events: none;
+        }
+      }
+    }
+
+    &__content {
+      &-search {
+        margin-bottom: 5px;
+
+        &>input {
+          font-size: 17px;
+          font-weight: 500;
+          font-family: inherit;
+          width: 100%;
+          padding: 5px;
+          margin: 5px 0px;
+          border-radius: 5px;
+          border: 3px solid var(--pc-second-color);
+          outline: none;
+        }
+      }
+
+      &-icons {
+        padding: 5px;
+        margin: 10px 0px;
+        border-radius: 5px;
+        background: var(--pc-second-color);
+
+        & main {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          max-width: 310px;
+          min-height: 200px;
+          max-height: 250px;
+          overflow-y: scroll;
+          align-content: flex-start;
+
+          &::-webkit-scrollbar {
+            width: 2px;
+          }
+
+          &::-webkit-scrollbar-button {
+            display: none;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: var(--pc-first-color);
+
+            &:hover {
+              background: var(--pc-first-color);
+            }
+          }
+        }
+
+        & main a {
+          display: flex;
+          cursor: pointer;
+          align-items: center;
+          justify-content: center;
+          color: var(--pc-first-color);
+          width: var(--pc-icon-size);
+          height: var(--pc-icon-size);
+          margin: var(--pc-icon-margin);
+          padding: var(--pc-icon-padding);
+          font-size: var(--pc-icon-font-size);
+          background-color: var(--pc-fourth-color);
+
+          transition: all 0.2s;
+
+          border-radius: 3px;
+          box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.199);
+
+          &:hover {
+            transform: scale(1.2);
+          }
+
+          & i {
+            pointer-events: none;
+          }
+        }
+      }
+
+      &-paginator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &>input {
+          cursor: pointer;
+          margin: 0 10px;
+          padding: 5px 10px;
+          font-size: 10px;
+          font-weight: 600;
+          background: transparent;
+          color: var(--pc-third-color);
+          border: 2px solid var(--pc-second-color);
+          border-radius: 5px;
+          text-transform: uppercase;
+        }
+
+        &>span {
+          text-align: center;
+          min-width: 50px;
+          font-weight: 600;
+          font-size: 13px;
+          font-family: inherit;
+          color: var(--pc-third-color);
+        }
+      }
+    }
+  }
+
+  &.open {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.25s;
+
+    >.picker {
+      transform: scale(1);
+    }
+  }
+}
