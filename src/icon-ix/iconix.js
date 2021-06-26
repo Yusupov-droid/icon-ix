@@ -30,8 +30,8 @@ class IconIx {
 	};
 	constructor(selector, option, paginator) {
 
-		this.#option = { ...IconIx.option, option };
-		this.#paginator = { ...IconIx.paginator, paginator };
+		this.#option = { ...IconIx.option, ...option };
+		this.#paginator = { ...IconIx.paginator, ...paginator };
 
 		this.#pickerElement = this.#getElement(selector);
 		this.#outputElement = this.#getElement(this.#option.output);
