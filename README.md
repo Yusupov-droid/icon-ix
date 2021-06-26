@@ -26,20 +26,20 @@ FontAwesome - Icon picker plugin.
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.css" />
 
 <!-- Include css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.0/dist/css/iconix.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/css/iconix.css" />
 
 <!-- Include min css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.0/dist/css/iconix.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/css/iconix.min.css"/>
 ```
 
 #### JS
 
 ```html
 <!-- Include js -->
-<script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.0/dist/js/iconix.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/js/iconix.js"></script>
 
 <!-- Include min js -->
-<script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.0/dist/js/iconix.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/js/iconix.min.js"></script>
 ```
 
 #### INIT - Init without otions
