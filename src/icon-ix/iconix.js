@@ -18,7 +18,7 @@ class IconIx {
 			color: {
 				first: "#5a00aa",
 				second: "#d2d2d2",
-				third: "#5a00aa",
+				third: "#616161",
 				fourth: "#ffffff",
 			},
 		},
