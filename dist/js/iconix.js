@@ -5176,13 +5176,9 @@ var IconIx = function IconIx(_selector, option, paginator) {
     }
   });
 
-  _classPrivateFieldSet(this, _option, _objectSpread(_objectSpread({}, IconIx.option), {}, {
-    option: option
-  }));
+  _classPrivateFieldSet(this, _option, _objectSpread(_objectSpread({}, IconIx.option), option));
 
-  _classPrivateFieldSet(this, _paginator, _objectSpread(_objectSpread({}, IconIx.paginator), {}, {
-    paginator: paginator
-  }));
+  _classPrivateFieldSet(this, _paginator, _objectSpread(_objectSpread({}, IconIx.paginator), paginator));
 
   _classPrivateFieldSet(this, _pickerElement, _classPrivateFieldGet(this, _getElement).call(this, _selector));
 
@@ -5207,7 +5203,7 @@ _defineProperty(IconIx, "option", {
     color: {
       first: "#5a00aa",
       second: "#d2d2d2",
-      third: "#5a00aa",
+      third: "#616161",
       fourth: "#ffffff"
     }
   }
