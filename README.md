@@ -2,6 +2,8 @@
 
 FontAwesome - Icon picker plugin.
 
+[Web Page Demo](https://yusupov-droid.github.io/icon-ix/)
+
 ---
 
 ### Quick start
