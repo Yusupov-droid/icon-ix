@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+:root {
+    --page-first-color: #5a00aa;
+    --page-third-color: #616161;
+    --page-second-color: #d2d2d2;
+    --page-fourth-color: #ffffff;
+}
+
+body {
+    font-family: Lato;
+    font-size: 17px;
+    font-weight: 600;
+    background-color: var(--page-first-color);
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  
+}
+
+.container{
+    max-width: 768px;
+    padding: 0px 40px;
+    margin: 0 auto;
+}
+.separator{
+    margin: 40px 0px;
+}
+
+
+.header {
+    padding: 50px 0px;
+    background-color: var(--page-fourth-color);
+}
+
+.header-content h1 {
+    font-family: Pacifico;
+    color: var(--page-first-color);
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 auto 10px;
+    text-align: center;
+}
+
+.header-content p {
+    color: var(--page-third-color);
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.header-content .nav {
+    margin: 15px 0px;
+}
+
+.header-content .nav .nav-list {
+    text-align: center;
+}
+.header-content .nav .nav-list .nav-link {
+    color: var(--page-first-color);
+    font-weight: 600;
+    margin: 0 20px;
+    display: inline-block;
+    list-style-type: none;
+}
+
+.section{
+    padding: 40px 0px;
+    text-align: center;
+    color: var(--page-fourth-color);
+}
+.section h2{
+    font-family: Pacifico;
+    font-size: 27px;
+    margin: 20px 0px;
+    font-weight: 400;
+}
+.section h4{
+    margin: 20px 0px;
+}
+
+.demo{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.demo .picker-btn{
+    cursor: pointer;
+    border: none;
+    height: 40px;
+    padding: 0px 15px;
+}
+.demo .picker-inp{
+    font: inherit;
+    height: 40px;
+    padding: 10px 15px;
+}
+.demo .picker-prv{
+    color: var(--page-first-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgb(255, 255, 255);
+}
+
+
+
