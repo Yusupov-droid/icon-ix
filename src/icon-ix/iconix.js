@@ -140,7 +140,7 @@ class IconIx {
 
 	#init = () => {
 
-		this.#icons = this.#getIconSet();
+		this.#icons = IconSet.get_icon_set();
 
 		this.modalRootElement = IconIx.#create(this);
 		this.modalCloseElemenet = IconIx.#get_role("close", this.modalRootElement);
@@ -248,9 +248,9 @@ class IconIx {
 	};
 	#searchIcons = (search) => {
 		if (!search) {
-			this.#icons = this.#getIconSet();
+			this.#icons = IconSet.get_icon_set();
 		} else {
-			this.#icons = this.#getIconSet().filter((elem) => {
+			this.#icons = IconSet.get_icon_set().filter((elem) => {
 				return elem.search.find((e) => {
 					return e.includes(search);
 				})
