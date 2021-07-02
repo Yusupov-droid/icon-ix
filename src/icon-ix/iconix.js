@@ -62,7 +62,6 @@ class IconIx {
 		page_size: 50,
 		page_count: 20,
 	};
-
 	static #create(instance){
 		let div = document.createElement("div");
 		div.innerHTML = `<div class="picker__wrapper" picker-role="close">
@@ -92,7 +91,6 @@ class IconIx {
 
 		return div.firstElementChild;
 	}
-
 	static #add_handlers(instance) {
 		instance.modalRootElement.addEventListener("click", instance.#onClose);
 		instance.modalCloseElemenet.addEventListener("click", instance.#onClose);
@@ -115,39 +113,41 @@ class IconIx {
 	static #get_element(selector) {
 		return selector instanceof HTMLElement ? selector : document?.querySelector(selector);
 	}
+
 	constructor(selector, option, paginator) {
 
-		this.#option = { ...IconIx.option, ...option };
-		this.#paginator = { ...IconIx.paginator, ...paginator };
+		this.#option 	= { ...IconIx.option, ...option 		};
+		this.#paginator = { ...IconIx.paginator, ...paginator 	};
 
-		this.#pickerElement = IconIx.#get_element(selector);
-		this.#outputElement = IconIx.#get_element(this.#option.output);
-		this.#previewElement = IconIx.#get_element(this.#option.preview);
+		this.#pickerElement 	= IconIx.#get_element(selector				);
+		this.#outputElement 	= IconIx.#get_element(this.#option.output	);
+		this.#previewElement 	= IconIx.#get_element(this.#option.preview	);
 
 		this.#pickerElement.addEventListener("click", this.#init);
 	}
 
-	#icons = [];
-	#option = {};
-	#paginator = {};
+	#icons 		= [];
+	#option		= {};
+	#paginator 	= {};
 
 
-	#pickerElement = null;
-	#outputElement = null;
-	#previewElement = null;
+	#pickerElement 	= null;
+	#outputElement 	= null;
+	#previewElement	= null;
 
 
 	#init = () => {
 
 		this.#icons = IconSet.get_icon_set();
 
-		this.modalRootElement = IconIx.#create(this);
-		this.modalCloseElemenet = IconIx.#get_role("close", this.modalRootElement);
-		this.modalSearchElemenet = IconIx.#get_role("search", this.modalRootElement);
-		this.modalPaginateNextElement = IconIx.#get_role("next", this.modalRootElement);
-		this.modalPaginatePrevElement = IconIx.#get_role("prev", this.modalRootElement);
-		this.modalPaginateInfoElement = IconIx.#get_role("info", this.modalRootElement);
-		this.modalIconContainerElement = IconIx.#get_role("container", this.modalRootElement);
+		this.modalRootElement 			= IconIx.#create(this);
+
+		this.modalCloseElemenet 		= IconIx.#get_role("close", 	this.modalRootElement	);
+		this.modalSearchElemenet 		= IconIx.#get_role("search", 	this.modalRootElement	);
+		this.modalPaginateNextElement 	= IconIx.#get_role("next", 		this.modalRootElement	);
+		this.modalPaginatePrevElement 	= IconIx.#get_role("prev", 		this.modalRootElement	);
+		this.modalPaginateInfoElement 	= IconIx.#get_role("info", 		this.modalRootElement	);
+		this.modalIconContainerElement 	= IconIx.#get_role("container", this.modalRootElement	);
 
 
 		this.#sync();
@@ -155,17 +155,19 @@ class IconIx {
 
 	};
 	#sync = () => {
+
 		let root = document.documentElement;
 
-		root.style.setProperty("--pc-icon-size", this.#option.style.icon.size);
-		root.style.setProperty("--pc-icon-margin", this.#option.style.icon.margin);
-		root.style.setProperty("--pc-icon-padding", this.#option.style.icon.padding);
-		root.style.setProperty("--pc-icon-font-size", this.#option.style.icon.fontSize);
+		root.style.setProperty("--pc-icon-size", 		this.#option.style.icon.size		);
+		root.style.setProperty("--pc-icon-margin", 		this.#option.style.icon.margin		);
+		root.style.setProperty("--pc-icon-padding", 	this.#option.style.icon.padding		);
+		root.style.setProperty("--pc-icon-font-size", 	this.#option.style.icon.fontSize	);
 
-		root.style.setProperty("--pc-first-color", this.#option.style.color.first);
-		root.style.setProperty("--pc-third-color", this.#option.style.color.third);
-		root.style.setProperty("--pc-second-color", this.#option.style.color.second);
-		root.style.setProperty("--pc-fourth-color", this.#option.style.color.fourth);
+		root.style.setProperty("--pc-first-color", 		this.#option.style.color.first		);
+		root.style.setProperty("--pc-third-color", 		this.#option.style.color.third		);
+		root.style.setProperty("--pc-second-color", 	this.#option.style.color.second		);
+		root.style.setProperty("--pc-fourth-color", 	this.#option.style.color.fourth		);
+		
 	};
 	#start = () => {
 		this.#pushIcons();
