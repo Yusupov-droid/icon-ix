@@ -75,14 +75,20 @@ class IconIx {
 		instance.modalPaginateNextElement.removeEventListener("click", instance.#onPaginate);
 		instance.modalPaginatePrevElement.removeEventListener("click", instance.#onPaginate);
 	}
+	static #get_role(role , root) {
+		return root.querySelector(`[picker-role="${role}"]`);
+	}
+	static #get_element(selector) {
+		return selector instanceof HTMLElement ? selector : document?.querySelector(selector);
+	}
 	constructor(selector, option, paginator) {
 
 		this.#option = { ...IconIx.option, ...option };
 		this.#paginator = { ...IconIx.paginator, ...paginator };
 
-		this.#pickerElement = this.#getElement(selector);
-		this.#outputElement = this.#getElement(this.#option.output);
-		this.#previewElement = this.#getElement(this.#option.preview);
+		this.#pickerElement = IconIx.#get_element(selector);
+		this.#outputElement = IconIx.#get_element(this.#option.output);
+		this.#previewElement = IconIx.#get_element(this.#option.preview);
 
 		this.#pickerElement.addEventListener("click", this.#init);
 	}
@@ -102,12 +108,12 @@ class IconIx {
 		this.#icons = this.#getIconSet();
 
 		this.modalRootElement = IconIx.#create(this);
-		this.modalCloseElemenet = this.#getRole("close");
-		this.modalSearchElemenet = this.#getRole("search");
-		this.modalPaginateNextElement = this.#getRole("next");
-		this.modalPaginatePrevElement = this.#getRole("prev");
-		this.modalPaginateInfoElement = this.#getRole("info");
-		this.modalIconContainerElement = this.#getRole("container");
+		this.modalCloseElemenet = IconIx.#get_role("close", this.modalRootElement);
+		this.modalSearchElemenet = IconIx.#get_role("search", this.modalRootElement);
+		this.modalPaginateNextElement = IconIx.#get_role("next", this.modalRootElement);
+		this.modalPaginatePrevElement = IconIx.#get_role("prev", this.modalRootElement);
+		this.modalPaginateInfoElement = IconIx.#get_role("info", this.modalRootElement);
+		this.modalIconContainerElement = IconIx.#get_role("container", this.modalRootElement);
 
 
 		this.#sync();
@@ -182,14 +188,6 @@ class IconIx {
 		this.#pushIcons();
 	};
 
-	#getRole = (rolename) => {
-		return this.modalRootElement.querySelector(`[picker-role="${rolename}"]`);
-	};
-	#getElement = (selector) => {
-		return selector instanceof HTMLElement
-			? selector
-			: document?.querySelector(selector);
-	};
 	#getIconSet = () => {
 		return ICON_SET
 	}
