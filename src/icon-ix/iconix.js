@@ -203,7 +203,12 @@ class IconIx {
 		}
 	};
 	#onSearch = (event) => {
-		this.#searchIcons(event.target.value);
+		if (event.target.value === '') {
+			this.#icons = IconSet.get_icon_set()
+		}
+		else {
+			this.#icons = IconSet.search(event.target.value, IconSet.get_icon_set());
+		}
 		this.#pushIcons();
 	};
 	#onPaginate = (event) => {
@@ -222,43 +227,22 @@ class IconIx {
 		this.#pushIcons();
 	};
 
-	#getIconSet = () => {
-		return ICON_SET
-	}
 
 	#pushIcons = () => {
-		this.#paginator.page_count = Math.ceil(
-			this.#icons.length / this.#paginator.page_size
-		);
+
+		let result = IconSet.paginate(this.#paginator.page, this.#paginator.page_size, this.#icons)
+
 		this.modalPaginateInfoElement.innerHTML =
-			this.#paginator.page + "/" + this.#paginator.page_count;
+			this.#paginator.page + "/" + result.page_count;
 
-		let result = this.#icons.slice(
-			(this.#paginator.page - 1) * this.#paginator.page_size,
-			this.#paginator.page * this.#paginator.page_size
-		);
-
-		this.modalIconContainerElement.innerHTML = result
+		this.modalIconContainerElement.innerHTML = result.data
 			.map(
 				(e) =>
 					`<a picker-role='icon' data-icon="${e.value}"><i class='${e.value}'></i></a>`
 			)
 			.join("");
 	};
-	#searchIcons = (search) => {
-		if (!search) {
-			this.#icons = IconSet.get_icon_set();
-		} else {
-			this.#icons = IconSet.get_icon_set().filter((elem) => {
-				return elem.search.find((e) => {
-					return e.includes(search);
-				})
-					? elem
-					: null;
-			});
-			this.#paginator.page = 1;
-		}
-	};
+
 
 }
 
