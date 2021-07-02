@@ -239,7 +239,7 @@ class IconIx {
 	#pushIcons = () => {
 
 		let result = IconSet.paginate(this.#paginator.page, this.#paginator.page_size, this.#icons)
-
+		this.#paginator.page_count = result.page_count;
 		this.modalPaginateInfoElement.innerHTML =
 			this.#paginator.page + "/" + result.page_count;
 
