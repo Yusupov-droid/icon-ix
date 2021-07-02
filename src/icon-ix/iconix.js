@@ -1,6 +1,41 @@
 import "./assets/style.scss";
 import ICON_SET from './collection'
 
+class IconSet {
+
+	static ICONS = [];
+
+	static search(value, icons_set) {
+		return icons_set.filter((item) => {
+			return item.search.find((elem) => {
+				return elem.includes(value);
+			})
+				? item
+				: null;
+		});
+	};
+
+	static paginate(page, page_size, icons_set) {
+		let result = icons_set.slice((page - 1) * page_size, page * page_size);
+
+		return {
+			data: result,
+			page_count: Math.ceil(icons_set.length / page_size)
+		}
+	};
+
+	static get_icon_set(){
+		if (this.ICONS.length > 0) {
+			return this.ICONS
+		}
+		else if (typeof window.ICON_SET === 'object') {
+			return window.ICON_SET
+		}
+		else {
+			throw new Error('ICON_SET is not defined or not connected.')
+		}
+	}
+}
 class IconIx {
 
 	static option = {
