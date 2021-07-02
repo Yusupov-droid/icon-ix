@@ -28,6 +28,37 @@ class IconIx {
 		page_size: 50,
 		page_count: 20,
 	};
+
+	static #create(instance){
+		let div = document.createElement("div");
+		div.innerHTML = `<div class="picker__wrapper" picker-role="close">
+							<div class="picker" picker-role="picker">
+								<div class="picker__header">
+									<h4 picker-role="tittle">${instance.#option.tittle}</h4>
+									<span picker-role="close">
+									<i class="fas fa-times"></i>
+									</span>
+								</div>
+								<div class="picker__content">
+									<div class="picker__content-search">
+									<input placeholder="Search" type="text" picker-role="search">
+									</div>
+									<div class="picker__content-icons">
+									<main picker-role="container">
+									</main>
+									</div>
+									<div class="picker__content-paginator">
+									<input type="button" picker-role="prev" value="prev"/>
+									<span                picker-role="info"></span>
+									<input type="button" picker-role="next" value="next"/>
+									</div>
+								</div>
+							</div>
+						</div>`;
+
+		return div.firstElementChild;
+	}
+
 	constructor(selector, option, paginator) {
 
 		this.#option = { ...IconIx.option, ...option };
@@ -54,7 +85,7 @@ class IconIx {
 
 		this.#icons = this.#getIconSet();
 
-		this.modalRootElement = this.#create();
+		this.modalRootElement = IconIx.#create(this);
 		this.modalCloseElemenet = this.#getRole("close");
 		this.modalSearchElemenet = this.#getRole("search");
 		this.modalPaginateNextElement = this.#getRole("next");
@@ -92,35 +123,6 @@ class IconIx {
 
 		document.body.appendChild(this.modalRootElement);
 		setTimeout(() => this.modalRootElement.classList.add("open"));
-	};
-	#create = () => {
-		let div = document.createElement("div");
-		div.innerHTML = `<div class="picker__wrapper" picker-role="close">
-				<div class="picker" picker-role="picker">
-				<div class="picker__header">
-					<h4 picker-role="tittle">${this.#option.tittle}</h4>
-					<span picker-role="close">
-					<i class="fas fa-times"></i>
-					</span>
-				</div>
-				<div class="picker__content">
-					<div class="picker__content-search">
-					<input placeholder="Search" type="text" picker-role="search">
-					</div>
-					<div class="picker__content-icons">
-					<main picker-role="container">
-					</main>
-					</div>
-					<div class="picker__content-paginator">
-					<input type="button" picker-role="prev" value="prev"/>
-					<span                picker-role="info"></span>
-					<input type="button" picker-role="next" value="next"/>
-					</div>
-				</div>
-				</div>
-			</div>`;
-
-		return div.firstElementChild;
 	};
 	#destroy = () => {
 		this.#icons = null;
