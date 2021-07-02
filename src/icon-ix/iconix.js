@@ -37,6 +37,12 @@ class IconSet {
 }
 class IconIx {
 
+	static get ICONS() {
+		return IconSet.ICONS;
+	}
+	static set ICONS(value) {
+		IconSet.ICONS = value;
+	}
 	static option = {
 		tittle: "IconIx",
 		output: "#output",
