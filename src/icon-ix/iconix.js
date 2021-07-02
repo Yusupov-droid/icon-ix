@@ -1,5 +1,4 @@
 import "./assets/style.scss";
-import ICON_SET from './collection'
 
 class IconSet {
 
