@@ -59,6 +59,22 @@ class IconIx {
 		return div.firstElementChild;
 	}
 
+	static #add_handlers(instance) {
+		instance.modalRootElement.addEventListener("click", instance.#onClose);
+		instance.modalCloseElemenet.addEventListener("click", instance.#onClose);
+		instance.modalSearchElemenet.addEventListener("input", instance.#onSearch);
+		instance.modalIconContainerElement.addEventListener("click", instance.#onIcon);
+		instance.modalPaginateNextElement.addEventListener("click", instance.#onPaginate);
+		instance.modalPaginatePrevElement.addEventListener("click", instance.#onPaginate);
+	}
+	static #del_handlers(instance) {
+		instance.modalRootElement.removeEventListener("click", instance.#onClose);
+		instance.modalCloseElemenet.removeEventListener("click", instance.#onClose);
+		instance.modalSearchElemenet.removeEventListener("input", instance.#onSearch);
+		instance.modalIconContainerElement.removeEventListener("click", instance.#onIcon);
+		instance.modalPaginateNextElement.removeEventListener("click", instance.#onPaginate);
+		instance.modalPaginatePrevElement.removeEventListener("click", instance.#onPaginate);
+	}
 	constructor(selector, option, paginator) {
 
 		this.#option = { ...IconIx.option, ...option };
@@ -114,12 +130,7 @@ class IconIx {
 	#start = () => {
 		this.#pushIcons();
 
-		this.modalRootElement.addEventListener("click", this.#onClose);
-		this.modalCloseElemenet.addEventListener("click", this.#onClose);
-		this.modalSearchElemenet.addEventListener("input", this.#onSearch);
-		this.modalIconContainerElement.addEventListener("click", this.#onIcon);
-		this.modalPaginateNextElement.addEventListener("click", this.#onPaginate);
-		this.modalPaginatePrevElement.addEventListener("click", this.#onPaginate);
+		IconIx.#add_handlers(this);
 
 		document.body.appendChild(this.modalRootElement);
 		setTimeout(() => this.modalRootElement.classList.add("open"));
@@ -127,12 +138,7 @@ class IconIx {
 	#destroy = () => {
 		this.#icons = null;
 
-		this.modalRootElement.removeEventListener("click", this.#onClose);
-		this.modalCloseElemenet.removeEventListener("click", this.#onClose);
-		this.modalSearchElemenet.removeEventListener("input", this.#onSearch);
-		this.modalIconContainerElement.removeEventListener("click", this.#onIcon);
-		this.modalPaginateNextElement.removeEventListener("click", this.#onPaginate);
-		this.modalPaginatePrevElement.removeEventListener("click", this.#onPaginate);
+		IconIx.#del_handlers(this);
 
 		this.modalRootElement.classList.remove("open");
 
