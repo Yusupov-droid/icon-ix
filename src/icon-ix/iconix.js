@@ -125,11 +125,8 @@ class IconIx {
 		this.#option 	= { ...IconIx.option, ...option 		};
 		this.#paginator = { ...IconIx.paginator, ...paginator 	};
 
-		this.#pickerElement 	= IconIx.#get_element(selector				);
-		this.#outputElement 	= IconIx.#get_element(this.#option.output	);
-		this.#previewElement 	= IconIx.#get_element(this.#option.preview	);
 
-		this.#pickerElement.addEventListener("click", this.#init);
+		IconIx.#get_element(this.#option.picker).addEventListener("click", this.#init);
 	}
 
 	#icons 		= [];
@@ -137,9 +134,6 @@ class IconIx {
 	#paginator 	= {};
 
 
-	#pickerElement 	= null;
-	#outputElement 	= null;
-	#previewElement	= null;
 
 
 	#init = () => {
@@ -198,8 +192,8 @@ class IconIx {
 		if (role === "icon") {
 			let data = event.target.getAttribute("data-icon");
 
-			this.#outputElement.value = data;
-			this.#previewElement.innerHTML = `<i class="${data}"></i>`;
+			IconIx.#get_element(this.#option.output).value = data;
+			IconIx.#get_element(this.#option.preview).innerHTML = `<i class="${data}"></i>`;
 
 			this.#destroy();
 		}
