@@ -43,53 +43,46 @@ class IconIx {
 	static set ICONS(value) {
 		IconSet.ICONS = value;
 	}
-	static option = {
-		tittle: "IconIx",
-		output: "#output",
-		preview: "#preview",
-
-		style: {
-			icon: {
-				size: "45px",
-				margin: "5px",
-				padding: "5px",
-				fontSize: "30px",
-			},
-			color: {
-				first: "#5a00aa",
-				second: "#d2d2d2",
-				third: "#616161",
-				fourth: "#ffffff",
-			},
-		},
-	};
-	static paginator = {
-		page: 1,
-		page_size: 50,
-		page_count: 20,
-	};
+	static OPTIONS = {
+		title:"IconIx",
+		picker:null,
+		output:null,
+		preview:null,
+		page_size:50,
+		searchPlaceholder:"Search icon",
+		paginatorNextButton:"next",
+		paginatorPrevButton:"prev",
+		header:true,
+		paginate:true,
+		searchable:true,
+		hideOnSelect:true,
+		iconSize:'45px',
+		iconMargin:'5px',
+		iconPadding:'5px',
+		iconFontSize:'30px',
+	}
 	static #create(instance){
 		let div = document.createElement("div");
 		div.innerHTML = `<div class="picker__wrapper" picker-role="close">
 							<div class="picker" picker-role="picker">
-								<div class="picker__header">
-									<h4 picker-role="tittle">${instance.#option.tittle}</h4>
+								<div class="picker__header" ${instance.#option.header ? '' : "style='display:none'"}>
+									<h4 picker-role="tittle">${instance.#option.title}</h4>
 									<span picker-role="close">
 									<i class="fas fa-times"></i>
 									</span>
 								</div>
 								<div class="picker__content">
-									<div class="picker__content-search">
-									<input placeholder="Search" type="text" picker-role="search">
+									<div class="picker__content-search" ${instance.#option.searchable ? '' : "style='display:none'"}>
+									<input placeholder="${instance.#option.searchPlaceholder}" type="text" picker-role="search">
 									</div>
 									<div class="picker__content-icons">
 									<main picker-role="container">
 									</main>
 									</div>
-									<div class="picker__content-paginator">
-									<input type="button" picker-role="prev" value="prev"/>
+									<div class="picker__content-paginator" ${instance.#option.paginate ? '' : "style='display:none'"}>
+									<input type="button" picker-role="prev" value="${instance.#option.paginatorPrevButton}"/>
 									<span                picker-role="info"></span>
-									<input type="button" picker-role="next" value="next"/>
+									<input type="button" picker-role="next" value="${instance.#option.paginatorNextButton}"/>
 									</div>
 								</div>
 							</div>
@@ -120,10 +113,15 @@ class IconIx {
 		return selector instanceof HTMLElement ? selector : document?.querySelector(selector);
 	}
 
-	constructor(selector, option, paginator) {
+	constructor(option) {
+		
+		this.#option 	= { ...IconIx.OPTIONS , ...option };
 
-		this.#option 	= { ...IconIx.option, ...option 		};
-		this.#paginator = { ...IconIx.paginator, ...paginator 	};
+		this.#paginator = {
+			page		:1,
+			paginate	:this.#option.paginate,
+			page_size	:this.#option.page_size,
+		}
 
 
 		IconIx.#get_element(this.#option.picker).addEventListener("click", this.#init);
@@ -158,15 +156,11 @@ class IconIx {
 
 		let root = document.documentElement;
 
-		root.style.setProperty("--pc-icon-size", 		this.#option.style.icon.size		);
-		root.style.setProperty("--pc-icon-margin", 		this.#option.style.icon.margin		);
-		root.style.setProperty("--pc-icon-padding", 	this.#option.style.icon.padding		);
-		root.style.setProperty("--pc-icon-font-size", 	this.#option.style.icon.fontSize	);
+		root.style.setProperty("--pc-icon-size", 		this.#option.iconSize		);
+		root.style.setProperty("--pc-icon-margin", 		this.#option.iconMargin		);
+		root.style.setProperty("--pc-icon-padding", 	this.#option.iconPadding	);
+		root.style.setProperty("--pc-icon-font-size", 	this.#option.iconFontSize	);
 
-		root.style.setProperty("--pc-first-color", 		this.#option.style.color.first		);
-		root.style.setProperty("--pc-third-color", 		this.#option.style.color.third		);
-		root.style.setProperty("--pc-second-color", 	this.#option.style.color.second		);
-		root.style.setProperty("--pc-fourth-color", 	this.#option.style.color.fourth		);
 		
 	};
 	#start = () => {
@@ -195,7 +189,9 @@ class IconIx {
 			IconIx.#get_element(this.#option.output).value = data;
 			IconIx.#get_element(this.#option.preview).innerHTML = `<i class="${data}"></i>`;
 
-			this.#destroy();
+			if(this.#option.hideOnSelect){
+				this.#destroy();
+			}
 		}
 	};
 	#onClose = (event) => {
@@ -232,17 +228,26 @@ class IconIx {
 
 	#pushIcons = () => {
 
-		let result = IconSet.paginate(this.#paginator.page, this.#paginator.page_size, this.#icons)
-		this.#paginator.page_count = result.page_count;
-		this.modalPaginateInfoElement.innerHTML =
-			this.#paginator.page + "/" + result.page_count;
-
-		this.modalIconContainerElement.innerHTML = result.data
-			.map(
-				(e) =>
-					`<a picker-role='icon' data-icon="${e.value}"><i class='${e.value}'></i></a>`
-			)
-			.join("");
+		if(this.#option.paginate){
+			let result = IconSet.paginate(this.#paginator.page, this.#paginator.page_size, this.#icons)
+			this.#paginator.page_count = result.page_count;
+			this.modalPaginateInfoElement.innerHTML = this.#paginator.page + "/" + result.page_count;
+	
+			this.modalIconContainerElement.innerHTML = result.data
+				.map(
+					(e) =>
+						`<a picker-role='icon' data-icon="${e.value}"><i class='${e.value}'></i></a>`
+				)
+				.join("");
+		}
+		else{
+			this.modalIconContainerElement.innerHTML = this.#icons
+				.map(
+					(e) =>
+						`<a picker-role='icon' data-icon="${e.value}"><i class='${e.value}'></i></a>`
+				)
+				.join("");
+		}
 	};
 
 
