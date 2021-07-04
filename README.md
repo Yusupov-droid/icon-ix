@@ -2,22 +2,25 @@
 
 FontAwesome - Icon picker plugin.
 
+For use the plugin you need use [_FontAwesomeIconSet_](https://yusupov-droid.github.io/font-awesome-iconset)
+
+All [ _FontAwesomeIconSet_](https://yusupov-droid.github.io/font-awesome-iconset)  vesions equal to _FontAwesome_ versions.
+
 [Web Page Demo](https://yusupov-droid.github.io/icon-ix/)
 
 ---
-
 ### Quick start
 
 #### HTML
 
 ```html
-  // Picker button
+  <!-- Picker button -->
   <button id="picker">Picker</button>
 
-  // Picker preview
+  <!-- Picker preview -->
   <div id="preview">Preview</div>
 
-  // Picker output
+  <!-- Picker output -->
   <input id="output">Output</input>
 ```
 
@@ -28,71 +31,64 @@ FontAwesome - Icon picker plugin.
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.css" />
 
 <!-- Include css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/css/iconix.css" />
-
-<!-- Include min css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/css/iconix.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@2.0.0/dist/css/iconix.min.css" />
 ```
 
 #### JS
 
 ```html
-<!-- Include js -->
-<script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/js/iconix.js"></script>
+<!-- Include iconset js -->
+<script src="https://cdn.jsdelivr.net/npm/font-awesome-iconset@5.15.0/dist/iconset.min.js"></script>
 
-<!-- Include min js -->
-<script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/js/iconix.min.js"></script>
+<!-- Include  js -->
+<script src="https://cdn.jsdelivr.net/npm/icon-ix@2.0.0/dist/js/iconix.min.js"></script>
 ```
 
-#### INIT - Init without otions
+#### Init
 
 ```js
 /** Init IconIx */
-new IconIx("#your-picker");
+new IconIx({
+  picker: "#picker",
+  output: "#output",
+  preview: "#preview",
+});
 ```
-
-#### INIT - Init with otions
-
 ```js
-/** Init IconIx with options */
+/** Init IconIx with full options */
 
 let option = {
-  tittle: "Your Tittle",
+  title: false,
+  picker: "#your-picker",
   output: "#your-output",
   preview: "#your-preview",
-  style: {
-    icon: {
-      size: "45px",
-      margin: "5px",
-      padding: "5px",
-      fontSize: "30px",
-    },
-    color: {
-      first: "#5a00aa",
-      second: "#d2d2d2",
-      third: "#5a00aa",
-      fourth: "#ffffff",
-    },
-  },
-};
 
-let paginator = {
-  page: 1,
   page_size: 50,
 
-  // It will be generated automatically
-  page_count: 0,
-};
-new IconIx("#your-picker", option, paginator);
-```
+  searchPlaceholder: "Search icon 🔎🔎",
+  paginatorNextButton: "next",
+  paginatorPrevButton: "prev",
 
+  header: true,
+  paginate: true,
+  searchable: true,
+  hideOnSelect: true,
+
+  iconSize: "45px",
+  iconMargin: "5px",
+  iconPadding: "5px",
+  iconFontSize: "30px",
+};
+
+new IconIx(option);
+```
 
 ### Quick start if you use Node.js
 
 #### npm
 
 ```cmd
-  npm i icon-ix
+  npm i icon-ix font-awesome-iconset
 ```
 
 #### import
@@ -100,8 +96,16 @@ new IconIx("#your-picker", option, paginator);
 ```js
 /** Import IconIx */
 import IconIx from "icon-ix";
+/** Import IconSet */
+import ICON_SET from "font-awesome-iconset";
 
-new IconIx("#your-picker");
+IconIx.ICONS = ICON_SET;
+
+new IconIx({
+  picker: "#your-picker",
+  output: "#your-output",
+  preview: "#your-preview",
+});
 ```
 
 

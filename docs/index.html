@@ -7,16 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IconIx - Icon picker plugin.</title>
 
-
-
-
     <!-- Include FontAwesome 5.15.3 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.css" />
-    <!-- Include min css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/css/iconix.min.css">
-    <!-- Include min js -->
-    <script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/js/iconix.min.js"></script>
-    
+
+    <!-- Include css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@2.0.0/dist/css/iconix.min.css">
+
+    <!-- Include iconset js -->
+    <script src="https://cdn.jsdelivr.net/npm/font-awesome-iconset@5.15.0/dist/iconset.min.js"></script>
+
+    <!-- Include  js -->
+    <script src="https://cdn.jsdelivr.net/npm/icon-ix@2.0.0/dist/js/iconix.min.js"></script>
+
 
     <link rel="stylesheet" href="./assets/prism.css">
     <script src="./assets/prism.js"></script>
@@ -36,7 +38,8 @@
                     <ul class="nav-list">
                         <li class="nav-link"><a href="#start">Start</a></li>
                         <li class="nav-link"><a href="#demos">Demos</a></li>
-                        <li class="nav-link"><a target="_blank" href="https://github.com/Yusupov-droid/icon-ix">View on GitHub</a></li>
+                        <li class="nav-link"><a target="_blank" href="https://github.com/Yusupov-droid/icon-ix">View on
+                                GitHub</a></li>
                     </ul>
                 </nav>
             </div>
@@ -50,15 +53,12 @@
                 <pre class="language-html">
                     <code class="language-html">
                         <xmp>
+
                             <!-- Include FontAwesome 5.15.3 -->
                             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.css" />
 
                             <!-- Include css -->
-                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/css/iconix.css">
-
-                            <!-- Include min css -->
-                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/css/iconix.min.css">
-
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icon-ix@2.0.0/dist/css/iconix.min.css">
 
                         </xmp>
                     </code>
@@ -68,12 +68,12 @@
                 <pre class="language-html">
                     <code class="language-html">
                         <xmp>
-                            <!-- Include js -->
-                            <script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/js/iconix.js"></script>
                             
-                            <!-- Include min js -->
-                            <script src="https://cdn.jsdelivr.net/npm/icon-ix@1.0.1/dist/js/iconix.min.js"></script>
-
+                            <!-- Include iconset js -->
+                            <script src="https://cdn.jsdelivr.net/npm/font-awesome-iconset@5.15.0/dist/iconset.min.js"></script>
+                            
+                            <!-- Include  js -->
+                            <script src="https://cdn.jsdelivr.net/npm/icon-ix@2.0.0/dist/js/iconix.min.js"></script>
 
                         </xmp>
                     </code>
@@ -127,7 +127,7 @@
                     <div class="picker-prv" id="preview"></div>
                 </div>
                 <hr class="separator">
-                
+
                 <h2>Start with options</h2>
                 <pre class="language-html">
                     <code class="language-html">
@@ -147,34 +147,30 @@
                     <code class="language-javascript">
                         // default option
                         let option = {
-                            tittle: "YourTitle",
+                            title: "Your Title",
+                            picker: '#your-picker',
                             output: "#your-output",
                             preview: "#your-preview",
-                            style: {
-                                icon: {
-                                    size: "40px",
-                                    margin: "5px",
-                                    padding: "5px",
-                                    fontSize: "25px",
-                                },
-                                color: {
-                                    first: "#5a00aa",
-                                    second: "#d2d2d2",
-                                    third: "#5a00aa",
-                                    fourth: "#ffffff",
-                                },
-                            },
+                
+                            page_size: 50,
+                
+                            searchPlaceholder: "Search icon 👽",
+                            paginatorNextButton: "👽",
+                            paginatorPrevButton: "👽",
+                
+                            header:true,
+                            paginate: true,
+                            searchable: true,
+                            hideOnSelect:true,
+                
+                            iconSize: '45px',
+                            iconMargin: '5px',
+                            iconPadding: '5px',
+                            iconFontSize: '30px',
                         };
                 
-                        let paginator = {
-                            page: 1,
-                            page_size: 100,
                 
-                            // It will be generated automatically
-                            page_count: 0,
-                        };
-
-                        new IconIx('#your-picker', option, paginator);
+                        new IconIx(option);
                     </code>
                 </pre>
                 <div class="demo">
@@ -187,40 +183,39 @@
             </div>
         </div>
     </section>
-
     <script>
-        new IconIx('#picker')
+        new IconIx({
+            picker: '#picker',
+            output: '#output',
+            preview: '#preview',
+        })
 
         // default option
         let option = {
-            tittle: "YourTitle",
+            title: "Your Title",
+            picker: '#your-picker',
             output: "#your-output",
             preview: "#your-preview",
-            style: {
-                icon: {
-                    size: "40px",
-                    margin: "5px",
-                    padding: "5px",
-                    fontSize: "25px",
-                },
-                color: {
-                    first: "#5a00aa",
-                    second: "#d2d2d2",
-                    third: "#5a00aa",
-                    fourth: "#ffffff",
-                },
-            },
+
+            page_size: 50,
+
+            searchPlaceholder: "Search icon 👽",
+            paginatorNextButton: "👽",
+            paginatorPrevButton: "👽",
+
+            header: true,
+            paginate: true,
+            searchable: true,
+            hideOnSelect: true,
+
+            iconSize: '45px',
+            iconMargin: '5px',
+            iconPadding: '5px',
+            iconFontSize: '30px',
         };
 
-        let paginator = {
-            page: 1,
-            page_size: 100,
 
-            // It will be generated automatically
-            page_count: 0,
-        };
-
-        let d = new IconIx('#your-picker', option, paginator);
+        new IconIx(option);
     </script>
 </body>
 
